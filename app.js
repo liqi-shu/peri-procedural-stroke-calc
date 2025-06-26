@@ -31,30 +31,51 @@ const probSpan = document.getElementById('predprob');
 
 // 3. Calculation function
 function calculateRisk() {
+  // Check if all required fields are filled
+  const age = parseFloat(document.getElementById('procAge').value) || 0;
+  const t2_diabetes = document.getElementById('t2_diabetes').checked;
+  const hypertension = document.getElementById('hypertension').checked;
+  const history_stroke = document.getElementById('history_stroke').checked;
+  const carotid_stenosis = document.getElementById('carotid_stenosis').checked;
+  const intracranial_athero = document.getElementById('intracranial_athero').checked;
+  const afib = document.getElementById('afib').checked;
+  const patientClass = document.getElementById('patientClass').value;
+  const procGroup = document.getElementById('procGroup').value;
+
+  // Get the results container for styling
+  const resultContainer = document.getElementById('result');
+
+  // Check if age is provided (required field)
+  if (!age || age <= 0) {
+    xbSpan.textContent = 'Please enter age';
+    probSpan.textContent = 'Age is required';
+    resultContainer.className = 'results'; // Black (default state)
+    return;
+  }
+
+  // All fields are available, proceed with calculation
   let xb = coefs.intercept;
 
   // Continuous predictor: age
-  const age = parseFloat(document.getElementById('procAge').value) || 0;
   xb += coefs.ProcAge * age;
 
   // Binary predictors (checkboxes)
-  xb += coefs.t2_diabetes        * (document.getElementById('t2_diabetes').checked ? 1 : 0);
-  xb += coefs.hypertension       * (document.getElementById('hypertension').checked  ? 1 : 0);
-  xb += coefs.history_stroke     * (document.getElementById('history_stroke').checked? 1 : 0);
-  xb += coefs.carotid_stenosis   * (document.getElementById('carotid_stenosis').checked?1 : 0);
-  xb += coefs.intracranial_athero* (document.getElementById('intracranial_athero').checked?1 : 0);
-  xb += coefs.afib               * (document.getElementById('afib').checked          ? 1 : 0);
+  xb += coefs.t2_diabetes        * (t2_diabetes ? 1 : 0);
+  xb += coefs.hypertension       * (hypertension ? 1 : 0);
+  xb += coefs.history_stroke     * (history_stroke ? 1 : 0);
+  xb += coefs.carotid_stenosis   * (carotid_stenosis ? 1 : 0);
+  xb += coefs.intracranial_athero* (intracranial_athero ? 1 : 0);
+  xb += coefs.afib               * (afib ? 1 : 0);
 
   // Patient class grouping
-  const pc = document.getElementById('patientClass').value;
-  if (pc === '1') xb += coefs.pc1;
-  else if (pc === '2') xb += coefs.pc2;
-  // (Group 0 or 3 have no added coefficient)
+  // Based on Stata output: 0=Outpatient/Elective Surgery (baseline), 1=Inpatient/Emergency, 3=Other
+  if (patientClass === '1') xb += coefs.pc1;  // Inpatient/Emergency
+  else if (patientClass === '3') xb += coefs.pc2;  // Other
+  // PatientClassGroup == 0 (Outpatient/Elective Surgery) is baseline - no coefficient added
 
   // Procedure group
-  const pg = document.getElementById('procGroup').value;
-  if (pg !== '1') {
-    xb += coefs['pg' + pg];
+  if (procGroup !== '1') {
+    xb += coefs['pg' + procGroup];
   }
 
   // 4. Transform to probability via logistic function
@@ -63,8 +84,18 @@ function calculateRisk() {
   // 5. Update the UI
   xbSpan.textContent   = xb.toFixed(4);
   probSpan.textContent = (predprob * 100).toFixed(1) + '%';
+  
+  // Update styling based on risk level
+  const riskPercentage = predprob * 100;
+  if (riskPercentage < 1) {
+    resultContainer.className = 'results success'; // Green for low risk
+  } else if (riskPercentage >= 1 && riskPercentage < 5) {
+    resultContainer.className = 'results warning'; // Orange for moderate risk
+  } else {
+    resultContainer.className = 'results error'; // Red for high risk
+  }
 }
 
 // 6. Wire up and initialize
 form.addEventListener('input', calculateRisk);
-calculateRisk();
+calculateRisk(); // Show initial message when page loads

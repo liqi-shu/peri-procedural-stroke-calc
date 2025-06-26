@@ -7,67 +7,96 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main>
-    <h1>Perioperative Stroke Risk Calculator</h1>
-    <form id="riskForm">
-      <fieldset>
-        <legend>Age (years)</legend>
-        <label>
-          <input type="number" name="procAge" id="procAge" min="0" required /> years
-        </label>
-      </fieldset>
-      <fieldset>
-        <legend>Type 2 diabetes?</legend>
-        <label><input type="checkbox" name="t2_diabetes" /> Yes</label>
-      </fieldset>
-      <fieldset>
-        <legend>Hypertension?</legend>
-        <label><input type="checkbox" name="hypertension" /> Yes</label>
-      </fieldset>
-      <fieldset>
-        <legend>History of stroke?</legend>
-        <label><input type="checkbox" name="history_stroke" /> Yes</label>
-      </fieldset>
-      <fieldset>
-        <legend>Carotid stenosis?</legend>
-        <label><input type="checkbox" name="carotid_stenosis" /> Yes</label>
-      </fieldset>
-      <fieldset>
-        <legend>Intracranial atherosclerosis?</legend>
-        <label><input type="checkbox" name="intracranial_athero" /> Yes</label>
-      </fieldset>
-      <fieldset>
-        <legend>Atrial fibrillation?</legend>
-        <label><input type="checkbox" name="afib" /> Yes</label>
-      </fieldset>
-      <fieldset>
-        <legend>Patient class</legend>
-        <select name="patientClass" id="patientClass">
-          <option value="1">Group 1</option>
-          <option value="2">Group 2 (Inpatient/Emergency)</option>
-          <option value="3">Other (baseline)</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Procedure group</legend>
-        <select name="procGroup" id="procGroup">
-          <option value="1">Reference (baseline)</option>
-          <option value="2">Gastrointestinal</option>
-          <option value="3">Orthopedic & Plastic</option>
-          <option value="4">Neurosurgery</option>
-          <option value="5">Cardiovascular & Thoracic</option>
-          <option value="6">Head & Neck</option>
-          <option value="7">OB-GYN</option>
-          <option value="8">Urology</option>
-          <option value="9">Other Specialized</option>
-        </select>
-      </fieldset>
-    </form>
-    <div id="result" aria-live="polite">
-      <p>Linear predictor (xb): <span id="xb">–</span></p>
-      <p>Predicted risk: <span id="predprob">–</span></p>
-    </div>
-  </main>
+  <div class="container">
+    <header class="header">
+      <h1>Perioperative Stroke Risk Calculator</h1>
+      <p>Evidence-based risk assessment tool for perioperative stroke prediction</p>
+    </header>
+    
+    <main class="main-content">
+      <form id="riskForm">
+        <div class="form-grid">
+          <!-- Age Section -->
+          <fieldset class="fieldset">
+            <legend class="legend">Patient Age</legend>
+            <div class="age-input">
+              <input type="number" name="procAge" id="procAge" min="0" max="120" required placeholder="Enter age" />
+              <label for="procAge">years</label>
+            </div>
+          </fieldset>
+
+          <!-- Medical Conditions Section -->
+          <fieldset class="fieldset">
+            <legend class="legend">Medical Conditions</legend>
+            <div class="checkbox-group">
+              <input type="checkbox" name="t2_diabetes" id="t2_diabetes" />
+              <label for="t2_diabetes">Type 2 Diabetes</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" name="hypertension" id="hypertension" />
+              <label for="hypertension">Hypertension</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" name="history_stroke" id="history_stroke" />
+              <label for="history_stroke">History of Stroke</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" name="carotid_stenosis" id="carotid_stenosis" />
+              <label for="carotid_stenosis">Carotid Stenosis</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" name="intracranial_athero" id="intracranial_athero" />
+              <label for="intracranial_athero">Intracranial Atherosclerosis</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" name="afib" id="afib" />
+              <label for="afib">Atrial Fibrillation</label>
+            </div>
+          </fieldset>
+
+          <!-- Surgery Settings Section -->
+          <fieldset class="fieldset">
+            <legend class="legend">Surgery/Procedure Setting</legend>
+            <select name="patientClass" id="patientClass">
+              <option value="0">Outpatient/Elective Surgery</option>
+              <option value="1">Inpatient/Emergency</option>
+              <option value="3">Other</option>
+            </select>
+          </fieldset>
+
+          <!-- Procedure Category Section -->
+          <fieldset class="fieldset">
+            <legend class="legend">Surgery/Procedure Category</legend>
+            <select name="procGroup" id="procGroup">
+              <option value="1">General Surgery</option>
+              <option value="2">Gastrointestinal</option>
+              <option value="3">Orthopedic & Plastic</option>
+              <option value="4">Neurosurgery</option>
+              <option value="5">Cardiovascular & Thoracic</option>
+              <option value="6">Head & Neck</option>
+              <option value="7">OB-GYN</option>
+              <option value="8">Urology</option>
+              <option value="9">Other Specialized</option>
+            </select>
+          </fieldset>
+        </div>
+      </form>
+
+      <!-- Results Section -->
+      <div id="result" class="results" aria-live="polite">
+        <h2>Risk Assessment Results</h2>
+        <div class="result-item">
+          <span class="result-label">Linear Predictor (xb):</span>
+          <span class="result-value" id="xb">–</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">Predicted Stroke Risk:</span>
+          <span class="result-value" id="predprob">–</span>
+        </div>
+      </div>
+    </main>
+  </div>
+  
   <script src="app.js"></script>
 </body>
 </html>
