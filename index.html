@@ -1,45 +1,73 @@
-<form id="riskForm">
-  <fieldset>
-    <legend>Age (years)</legend>
-    <input type="number" id="procAge" min="0" required />
-  </fieldset>
-
-  <fieldset>
-    <legend>Type 2 diabetes?</legend>
-    <label><input type="checkbox" name="t2_diabetes" /> Yes</label>
-  </fieldset>
-
-  <fieldset>
-    <legend>Hypertension?</legend>
-    <label><input type="checkbox" name="hypertension" /> Yes</label>
-  </fieldset>
-
-  <!-- …and so on for history_stroke, carotid_stenosis, etc. -->
-
-  <fieldset>
-    <legend>Patient class</legend>
-    <select id="patientClass">
-      <option value="0">Outpatient</option>
-      <option value="1">Inpatient (Group 1)</option>
-      <option value="2">Inpatient/Emergency (Group 2)</option>
-      <option value="3">Other (Group 3)</option>
-    </select>
-  </fieldset>
-
-  <fieldset>
-    <legend>Procedure group</legend>
-    <select id="procGroup">
-      <option value="1">Reference</option>
-      <option value="2">Gastrointestinal</option>
-      <option value="3">Orthopedic & Plastic</option>
-      <!-- …through value="9" … -->
-    </select>
-  </fieldset>
-
-  <!-- add any remaining medication flags, atrial fib, etc. -->
-</form>
-
-<div id="result" aria-live="polite">
-  <p>Linear predictor (xb): <span id="xb">–</span></p>
-  <p>Predicted risk: <span id="predprob">–</span></p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perioperative Stroke Risk Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <h1>Perioperative Stroke Risk Calculator</h1>
+    <form id="riskForm">
+      <fieldset>
+        <legend>Age (years)</legend>
+        <label>
+          <input type="number" name="procAge" id="procAge" min="0" required /> years
+        </label>
+      </fieldset>
+      <fieldset>
+        <legend>Type 2 diabetes?</legend>
+        <label><input type="checkbox" name="t2_diabetes" /> Yes</label>
+      </fieldset>
+      <fieldset>
+        <legend>Hypertension?</legend>
+        <label><input type="checkbox" name="hypertension" /> Yes</label>
+      </fieldset>
+      <fieldset>
+        <legend>History of stroke?</legend>
+        <label><input type="checkbox" name="history_stroke" /> Yes</label>
+      </fieldset>
+      <fieldset>
+        <legend>Carotid stenosis?</legend>
+        <label><input type="checkbox" name="carotid_stenosis" /> Yes</label>
+      </fieldset>
+      <fieldset>
+        <legend>Intracranial atherosclerosis?</legend>
+        <label><input type="checkbox" name="intracranial_athero" /> Yes</label>
+      </fieldset>
+      <fieldset>
+        <legend>Atrial fibrillation?</legend>
+        <label><input type="checkbox" name="afib" /> Yes</label>
+      </fieldset>
+      <fieldset>
+        <legend>Patient class</legend>
+        <select name="patientClass" id="patientClass">
+          <option value="1">Group 1</option>
+          <option value="2">Group 2 (Inpatient/Emergency)</option>
+          <option value="3">Other (baseline)</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Procedure group</legend>
+        <select name="procGroup" id="procGroup">
+          <option value="1">Reference (baseline)</option>
+          <option value="2">Gastrointestinal</option>
+          <option value="3">Orthopedic & Plastic</option>
+          <option value="4">Neurosurgery</option>
+          <option value="5">Cardiovascular & Thoracic</option>
+          <option value="6">Head & Neck</option>
+          <option value="7">OB-GYN</option>
+          <option value="8">Urology</option>
+          <option value="9">Other Specialized</option>
+        </select>
+      </fieldset>
+    </form>
+    <div id="result" aria-live="polite">
+      <p>Linear predictor (xb): <span id="xb">–</span></p>
+      <p>Predicted risk: <span id="predprob">–</span></p>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
