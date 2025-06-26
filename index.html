@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Perioperative Stroke Risk Calc</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <h1>Perioperative Stroke Risk</h1>
+    <form id="riskForm">
+      <fieldset>
+        <legend>Age ≥ 62?</legend>
+        <label><input type="checkbox" name="age62" /> Yes</label>
+      </fieldset>
+      <fieldset>
+        <legend>History of stroke or TIA?</legend>
+        <label><input type="checkbox" name="strokeTIA" /> Yes</label>
+      </fieldset>
+      <!-- add the rest of your risk factors here -->
+      <fieldset>
+        <legend>BMI (35–40 subtracts 1 point)</legend>
+        <input type="number" id="bmi" min="0" placeholder="kg/m²" />
+      </fieldset>
+    </form>
+    <div id="result" aria-live="polite">
+      Score: 0 (Low risk)
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
