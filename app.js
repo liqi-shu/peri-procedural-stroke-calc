@@ -26,7 +26,6 @@ const coefs = {
 
 // 2. Grab the form and output spans
 const form     = document.getElementById('riskForm');
-const xbSpan   = document.getElementById('xb');
 const probSpan = document.getElementById('predprob');
 
 // 3. Calculation function
@@ -47,7 +46,6 @@ function calculateRisk() {
 
   // Check if age is provided (required field)
   if (!age || age <= 0) {
-    xbSpan.textContent = 'Please enter age';
     probSpan.textContent = 'Age is required';
     resultContainer.className = 'results'; // Black (default state)
     return;
@@ -82,7 +80,6 @@ function calculateRisk() {
   const predprob = 1 / (1 + Math.exp(-xb));
 
   // 5. Update the UI
-  xbSpan.textContent   = xb.toFixed(4);
   probSpan.textContent = (predprob * 100).toFixed(1) + '%';
   
   // Update styling based on risk level
