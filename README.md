@@ -1,8 +1,8 @@
-# Brown University Perioperative Risk Assessment
+# Brown Perioperative Stroke Risk Assessment Tool
 
 ## Overview
 
-The Brown University Perioperative Risk Assessment is an evidence-based, web-based tool designed to predict the risk of perioperative stroke in patients undergoing surgical procedures. This calculator implements a validated logistic regression model derived from comprehensive clinical data analysis using the Brown University healthcare dataset.
+The Brown Perioperative Stroke Risk Assessment Tool is an evidence-based, web-based tool designed to predict the risk of perioperative stroke in patients undergoing surgical procedures. This calculator implements a validated logistic regression model derived from comprehensive clinical data analysis.
 
 ## Clinical Significance
 

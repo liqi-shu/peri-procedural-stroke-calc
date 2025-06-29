@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brown University Perioperative Risk Assessment</title>
+  <title>Brown Perioperative Stroke Risk Assessment Tool</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <header class="header">
-      <h1>Brown University Perioperative Risk Assessment</h1>
-      <p>Evidence-based risk assessment tool based on Brown University healthcare dataset</p>
+      <h1>Brown Perioperative Stroke Risk Assessment Tool</h1>
     </header>
     
     <main class="main-content">
@@ -60,7 +59,7 @@
             <select name="patientClass" id="patientClass">
               <option value="0">Outpatient/Elective Surgery</option>
               <option value="1">Inpatient/Emergency</option>
-              <option value="3">Other</option>
+              <option value="3">Other (Outpatient Clinics/Emergency Room)</option>
             </select>
           </fieldset>
 
@@ -78,6 +77,9 @@
               <option value="8">Urology</option>
               <option value="9">Other Specialized</option>
             </select>
+            <div class="footnote">
+              <sup>*</sup> Other Specialized includes: Neurology, Anesthesiology, Interventional Radiology, Medicine, Pediatric Surgery, Transplant, Physical Medicine and Rehabilitation
+            </div>
           </fieldset>
         </div>
       </form>

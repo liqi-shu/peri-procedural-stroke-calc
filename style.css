@@ -266,3 +266,21 @@ select:focus {
     color: var(--text-primary) !important;
   }
 }
+
+/* Footnote styling */
+.footnote {
+  margin-top: 15px;
+  padding: 12px 15px;
+  background: rgba(52, 152, 219, 0.05);
+  border-left: 3px solid var(--secondary-color);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.footnote sup {
+  color: var(--secondary-color);
+  font-weight: 600;
+  margin-right: 4px;
+}
