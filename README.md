@@ -21,7 +21,7 @@ The risk prediction model was developed using the Brown University healthcare da
 
 - **Patient Demographics**: Age (continuous variable)
 - **Medical Comorbidities**: Type 2 diabetes, hypertension, history of stroke, carotid stenosis, intracranial atherosclerosis, atrial fibrillation
-- **Surgical Factors**: Surgery/procedure setting (outpatient, in-hospital, office/emergency department), procedure category (9 specialty groups)
+- **Surgical Factors**: Surgery/procedure setting (ambulatory surgery, emergency/inpatient surgery, outpatient clinic), procedure category (10 specialty groups)
 
 ### Statistical Methods
 - **Model Type**: Multivariable logistic regression
@@ -99,24 +99,25 @@ The calculator implements validated logistic regression coefficients:
 
 ```javascript
 const coefs = {
-  intercept:           -8.425560,
-  ProcAge:              0.0203961,
-  t2_diabetes:          0.1993000,
-  hypertension:         0.4309231,
-  history_stroke:       1.3042420,
-  carotid_stenosis:     0.7408938,
-  intracranial_athero:  1.0137060,
-  afib:                 0.2813136,
-  pc1:                  1.4603130,   // In-hospital
-  pc2:                 -0.3502473,   // Office/emergency department
-  pg2:                  0.3955654,   // Gastrointestinal
-  pg3:                  0.0151325,   // Orthopedic & Plastic
-  pg4:                  1.3770410,   // Neurosurgery
-  pg5:                  1.1131010,   // Cardiovascular & Thoracic
-  pg6:                  0.0356944,   // Head & Neck
-  pg7:                  0.1424025,   // OB-GYN
-  pg8:                  0.4922821,   // Urology
-  pg9:                  0.8111769    // Other Specialized
+  intercept:          -8.231625,
+  ProcAge:             0.0184396,
+  t2_diabetes:         0.1863285,
+  hypertension:        0.4105921,
+  history_stroke:      1.3059540,
+  carotid_stenosis:    0.7243695,
+  intracranial_athero: 1.0150850,
+  afib:                0.2812061,
+  pc1:                 1.4298020,  // Emergency/Inpatient Surgery
+  pc2:                -0.4284533,  // Outpatient Clinic
+  pg2:                 0.4064888,  // Transplant Surgery
+  pg3:                 0.0237525,  // Orthopedic & Plastic Surgery
+  pg4:                 1.3228840,  // Neurosurgery
+  pg5:                 1.1866580,  // Cardiovascular Procedure
+  pg6:                 0.1703888,  // Thoracic Surgery
+  pg7:                 0.0192458,  // Head & Neck Surgery
+  pg8:                 0.0946338,  // OB-GYN Surgery
+  pg9:                 0.5609101,  // Urologic Surgery
+  pg10:                0.4104761   // Non-cardiac Medical Subspecialty Procedure
 };
 ```
 

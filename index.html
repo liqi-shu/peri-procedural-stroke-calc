@@ -86,9 +86,9 @@
           <fieldset class="fieldset">
             <legend class="legend">Surgery/Procedure Setting</legend>
             <select name="patientClass" id="patientClass" aria-describedby="setting-help">
-              <option value="0">Outpatient</option>
-              <option value="1">In-hospital</option>
-              <option value="3">Office/emergency department procedure</option>
+              <option value="0">Ambulatory Surgery</option>
+              <option value="1">Emergency/Inpatient Surgery</option>
+              <option value="3">Outpatient Clinic</option>
             </select>
             <div id="setting-help" class="help-text">Select the primary setting where the procedure will be performed</div>
           </fieldset>
@@ -98,17 +98,18 @@
             <legend class="legend">Surgery/Procedure Category</legend>
             <select name="procGroup" id="procGroup" aria-describedby="category-help">
               <option value="1">General Surgery</option>
-              <option value="2">Gastrointestinal</option>
-              <option value="3">Orthopedic & Plastic</option>
+              <option value="2">Transplant Surgery</option>
+              <option value="3">Orthopedic & Plastic Surgery</option>
               <option value="4">Neurosurgery</option>
-              <option value="5">Cardiovascular & Thoracic</option>
-              <option value="6">Head & Neck</option>
-              <option value="7">OB-GYN</option>
-              <option value="8">Urology</option>
-              <option value="9">Other Specialized</option>
+              <option value="5">Cardiovascular Procedure</option>
+              <option value="6">Thoracic Surgery</option>
+              <option value="7">Head & Neck Surgery</option>
+              <option value="8">OB-GYN Surgery</option>
+              <option value="9">Urologic Surgery</option>
+              <option value="10">Non-cardiac Medical Subspecialty Procedure</option>
             </select>
             <div class="footnote">
-              <sup>*</sup> Other Specialized includes: Neurology, Anesthesiology, Interventional Radiology, Medicine, Pediatric Surgery, Transplant, Physical Medicine and Rehabilitation
+              <sup>*</sup> Non-cardiac Medical Subspecialty Procedure includes: gastrointestinal endoscopy, pulmonology bronchoscopy, renal biopsy, pain injections, rehabilitation procedures, and other medical subspecialty interventions
             </div>
             <div id="category-help" class="help-text">Select the primary surgical specialty category</div>
           </fieldset>
