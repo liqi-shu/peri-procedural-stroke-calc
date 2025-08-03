@@ -1,4 +1,4 @@
-// Brown Perioperative Stroke Risk Assessment Tool
+// Brown Peri-procedural Stroke Ri-proceduralsk Assessment Tool
 // Evidence-based calculator implementing validated logistic regression model
 
 // 1. Model coefficients (β̂) from Stata
@@ -56,8 +56,8 @@ const clinicalGuidance = {
   low: {
     title: "Low Risk (< 1%)",
     recommendations: [
-      "Standard perioperative monitoring is appropriate",
-      "Routine preoperative evaluation sufficient",
+      "Standard peri-procedural monitoring is appropriate",
+      "Routine pre-procedural evaluation sufficient",
       "No additional stroke-specific precautions required",
       "Consider standard ASA monitoring guidelines"
     ]
@@ -65,21 +65,21 @@ const clinicalGuidance = {
   moderate: {
     title: "Moderate Risk (1-5%)",
     recommendations: [
-      "Enhanced perioperative monitoring recommended",
-      "Consider preoperative neurology consultation",
+      "Enhanced peri-procedural monitoring recommended",
+      "Consider pre-procedural neurology consultation",
       "Implement stroke-specific monitoring protocols",
       "Monitor blood pressure closely during procedure",
-      "Consider extended post-operative observation"
+      "Consider extended post-procedural observation"
     ]
   },
   high: {
     title: "High Risk (≥ 5%)",
     recommendations: [
-      "Intensive perioperative monitoring required",
-      "Preoperative neurology consultation strongly recommended",
+      "Intensive peri-procedural monitoring required",
+      "Pre-procedural neurology consultation strongly recommended",
       "Consider postponing elective procedures if possible",
       "Implement comprehensive stroke prevention protocols",
-      "Extended post-operative monitoring in ICU setting",
+      "Extended post-procedural monitoring in ICU setting",
       "Multidisciplinary team consultation recommended"
     ]
   }

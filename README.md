@@ -1,15 +1,15 @@
-# Brown Perioperative Stroke Risk Assessment Tool
+# Brown Peri-procedural Stroke Risk Assessment Tool
 
 ## Overview
 
-The Brown Perioperative Stroke Risk Assessment Tool is an evidence-based, web-based clinical decision support system designed to predict the risk of perioperative stroke in patients undergoing surgical procedures. This calculator implements a validated logistic regression model derived from comprehensive multicenter clinical data analysis, providing real-time risk assessment with confidence intervals and evidence-based clinical recommendations.
+The Brown Peri-procedural Stroke Risk Assessment Tool is an evidence-based, web-based clinical decision support system designed to predict the risk of peri-procedural stroke in patients undergoing surgical procedures. This calculator implements a validated logistic regression model derived from comprehensive multicenter clinical data analysis, providing real-time risk assessment with confidence intervals and evidence-based clinical recommendations.
 
 ## Clinical Significance
 
-Perioperative stroke is a serious complication that can significantly impact patient outcomes, healthcare costs, and quality of life. This calculator provides clinicians with a rapid, evidence-based risk assessment tool to:
+Peri-procedural stroke is a serious complication that can significantly impact patient outcomes, healthcare costs, and quality of life. This calculator provides clinicians with a rapid, evidence-based risk assessment tool to:
 
-- **Preoperative Risk Stratification**: Identify high-risk patients requiring enhanced monitoring
-- **Clinical Decision Support**: Guide perioperative management decisions and resource allocation
+- **Pre-procedural Risk Stratification**: Identify high-risk patients requiring enhanced monitoring
+- **Clinical Decision Support**: Guide peri-procedural management decisions and resource allocation
 - **Informed Consent**: Facilitate comprehensive patient discussions about stroke risk
 - **Quality Improvement**: Support institutional protocols for stroke prevention
 - **Research Applications**: Enable standardized risk assessment across institutions
@@ -17,7 +17,7 @@ Perioperative stroke is a serious complication that can significantly impact pat
 ## Methodology
 
 ### Data Source and Model Development
-The risk prediction model was developed using the Brown University healthcare dataset, a comprehensive multicenter clinical database containing detailed perioperative and outcome data from 2016-2024. The model incorporates validated clinical predictors including:
+The risk prediction model was developed using the Brown University healthcare dataset, a comprehensive multicenter clinical database containing detailed peri-procedural and outcome data from 2016-2024. The model incorporates validated clinical predictors including:
 
 - **Patient Demographics**: Age (continuous variable)
 - **Medical Comorbidities**: Type 2 diabetes, hypertension, history of stroke, carotid stenosis, intracranial atherosclerosis, atrial fibrillation
@@ -73,13 +73,13 @@ The model demonstrates strong predictive performance suitable for clinical imple
 
 ### Interpretation of Results
 
-- **Predicted Stroke Risk**: Point estimate of perioperative stroke probability
+- **Predicted Stroke Risk**: Point estimate of peri-procedural stroke probability
 - **95% Confidence Interval**: Range of plausible risk values
 - **Clinical Recommendations**: Risk-stratified management suggestions
 
 ### Risk Categories and Clinical Implications
 
-- **Low Risk (< 1%)**: Standard perioperative monitoring appropriate
+- **Low Risk (< 1%)**: Standard peri-procedural monitoring appropriate
 - **Moderate Risk (1-5%)**: Enhanced monitoring and stroke-specific protocols recommended
 - **High Risk (≥ 5%)**: Intensive monitoring and multidisciplinary consultation required
 
@@ -87,7 +87,7 @@ The model demonstrates strong predictive performance suitable for clinical imple
 
 ### File Structure
 ```
-brown-perioperative-stroke-calc/
+brown-peri-procedural-stroke-calc/
 ├── index.html          # Main HTML interface with accessibility features
 ├── app.js             # JavaScript calculation engine with validation
 ├── style.css          # Professional medical-grade styling
@@ -190,12 +190,12 @@ For technical support, clinical questions, or collaboration opportunities:
 **Shu L, Furie KL, Garcia Guarniz AL, de Havenon A, Khan F, Nguyen TN, Siegler JE, Corne de Toledo ES, Wang S, Zhao X, Yaghi S.** A Multicenter Perioperative Stroke Risk Model. [Journal Name]. [Year].
 
 ### Web-Based Implementation
-**Brown Perioperative Stroke Risk Assessment Tool.** Evidence-based calculator implementing validated logistic regression model. Available at: [URL]
+**Brown Peri-procedural Stroke Risk Assessment Tool.** Evidence-based calculator implementing validated logistic regression model. Available at: [URL]
 
 ### Suggested Citation Format
 ```
-Shu L, et al. A Multicenter Perioperative Stroke Risk Model. [Journal Name]. [Year].
-Brown Perioperative Stroke Risk Assessment Tool. Available at: [URL]
+Shu L, et al. A Multicenter Peri-procedural Stroke Risk Model. [Journal Name]. [Year].
+Brown Peri-procedural Stroke Risk Assessment Tool. Available at: [URL]
 ```
 
 ## Limitations and Disclaimers

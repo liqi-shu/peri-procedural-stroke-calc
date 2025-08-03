@@ -1,153 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Brown Perioperative Stroke Risk Assessment Tool - Evidence-based calculator for predicting perioperative stroke risk using validated logistic regression model" />
-  <meta name="keywords" content="perioperative stroke, risk assessment, surgical complications, stroke prediction, medical calculator" />
-  <meta name="author" content="Brown University Medical School" />
-  <meta name="robots" content="index, follow" />
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Brown Perioperative Stroke Risk Assessment Tool" />
-  <meta property="og:description" content="Evidence-based calculator for predicting perioperative stroke risk" />
-  
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:title" content="Brown Perioperative Stroke Risk Assessment Tool" />
-  <meta property="twitter:description" content="Evidence-based calculator for predicting perioperative stroke risk" />
-  
-  <title>Brown Perioperative Stroke Risk Assessment Tool</title>
-  <link rel="stylesheet" href="style.css" />
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Author" content="Brown University Medical School">
+  <meta name="Description" content="Brown Perioperative Stroke Risk Assessment Tool - Evidence-based calculator for predicting perioperative stroke risk using validated logistic regression model">
+  <meta name="Keywords" content="perioperative stroke, risk assessment, surgical complications, stroke prediction, medical calculator">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p2 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px Times; -webkit-text-stroke: #000000; background-color: #ffffff}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; -webkit-text-stroke: #000000; min-height: 13.0px}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; -webkit-text-stroke: #000000; background-color: #ffffff}
+    p.p7 {margin: 0.0px 0.0px 12.0px 0.0px; font: 10.0px Times; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 11.0px 'Helvetica Neue'; font-kerning: none}
+    span.s3 {font-kerning: none; background-color: #ffffff}
+    span.s4 {font: 11.0px Times; font-kerning: none}
+    span.s5 {font: 10.0px Times; font-kerning: none}
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-      <h1>Brown Perioperative Stroke Risk Assessment Tool</h1>
-      <p class="subtitle">Evidence-based risk prediction for perioperative stroke</p>
-    </header>
-    
-    <main class="main-content">
-      <form id="riskForm" novalidate>
-        <div class="form-grid">
-          <!-- Age Section -->
-          <fieldset class="fieldset">
-            <legend class="legend">Patient Age</legend>
-            <div class="age-input">
-              <input 
-                type="number" 
-                name="procAge" 
-                id="procAge" 
-                min="18" 
-                max="120" 
-                required 
-                placeholder="Enter age" 
-                aria-describedby="age-help"
-              />
-              <label for="procAge">years</label>
-            </div>
-            <div id="age-help" class="help-text">Age range: 18-120 years</div>
-          </fieldset>
-
-          <!-- Medical Conditions Section -->
-          <fieldset class="fieldset">
-            <legend class="legend">Medical Conditions</legend>
-            <div class="checkbox-group">
-              <input type="checkbox" name="t2_diabetes" id="t2_diabetes" />
-              <label for="t2_diabetes">Type 2 Diabetes</label>
-            </div>
-            <div class="checkbox-group">
-              <input type="checkbox" name="hypertension" id="hypertension" />
-              <label for="hypertension">Hypertension</label>
-            </div>
-            <div class="checkbox-group">
-              <input type="checkbox" name="history_stroke" id="history_stroke" />
-              <label for="history_stroke">History of Stroke</label>
-            </div>
-            <div class="checkbox-group">
-              <input type="checkbox" name="carotid_stenosis" id="carotid_stenosis" />
-              <label for="carotid_stenosis">Carotid Stenosis</label>
-            </div>
-            <div class="checkbox-group">
-              <input type="checkbox" name="intracranial_athero" id="intracranial_athero" />
-              <label for="intracranial_athero">Intracranial Atherosclerosis</label>
-            </div>
-            <div class="checkbox-group">
-              <input type="checkbox" name="afib" id="afib" />
-              <label for="afib">Atrial Fibrillation</label>
-            </div>
-          </fieldset>
-
-          <!-- Surgery Settings Section -->
-          <fieldset class="fieldset">
-            <legend class="legend">Surgery/Procedure Setting</legend>
-            <select name="patientClass" id="patientClass" aria-describedby="setting-help">
-              <option value="0">Ambulatory Surgery</option>
-              <option value="1">Emergency/Inpatient Surgery</option>
-              <option value="3">Outpatient Clinic</option>
-            </select>
-            <div id="setting-help" class="help-text">Select the primary setting where the procedure will be performed</div>
-          </fieldset>
-
-          <!-- Procedure Category Section -->
-          <fieldset class="fieldset">
-            <legend class="legend">Surgery/Procedure Category</legend>
-            <select name="procGroup" id="procGroup" aria-describedby="category-help">
-              <option value="1">General Surgery</option>
-              <option value="2">Transplant Surgery</option>
-              <option value="3">Orthopedic & Plastic Surgery</option>
-              <option value="4">Neurosurgery</option>
-              <option value="5">Cardiovascular Procedure</option>
-              <option value="6">Thoracic Surgery</option>
-              <option value="7">Head & Neck Surgery</option>
-              <option value="8">OB-GYN Surgery</option>
-              <option value="9">Urologic Surgery</option>
-              <option value="10">Non-cardiac Medical Subspecialty Procedure</option>
-            </select>
-            <div class="footnote">
-              <sup>*</sup> Non-cardiac Medical Subspecialty Procedure includes: gastrointestinal endoscopy, pulmonology bronchoscopy, renal biopsy, pain injections, rehabilitation procedures, and other medical subspecialty interventions
-            </div>
-            <div id="category-help" class="help-text">Select the primary surgical specialty category</div>
-          </fieldset>
-        </div>
-      </form>
-
-      <!-- Results Section -->
-      <div id="result" class="results" aria-live="polite" role="status">
-        <div class="result-item">
-          <span class="result-label">Predicted Stroke Risk:</span>
-          <span class="result-value" id="predprob" aria-label="Predicted stroke risk percentage">–</span>
-        </div>
-        <div class="confidence-interval" id="confidence-interval" style="display: none;">
-          <span class="ci-label">95% Confidence Interval:</span>
-          <span class="ci-value" id="ci-value"></span>
-        </div>
-      </div>
-
-      <!-- Clinical Guidance -->
-      <div class="clinical-guidance" id="clinical-guidance" style="display: none;">
-        <h3>Clinical Recommendations</h3>
-        <div class="guidance-content" id="guidance-content"></div>
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="institutional-info">
-          <p><strong>Brown University Medical School</strong></p>
-          <p>Evidence-based clinical decision support tool</p>
-        </div>
-        <div class="disclaimer">
-          <p><small>This tool is for educational and clinical decision support only. Always use clinical judgment and consult appropriate healthcare providers.</small></p>
-        </div>
-      </div>
-    </footer>
-  </div>
-  
-  <script src="app.js"></script>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 24.0px Times; -webkit-text-stroke: #000000"><span class="s1"><b>Brown Peri-procedural Stroke Risk Assessment Tool</b></span></h1>
+<p class="p2"><span class="s1">Evidence-based risk prediction for peri-procedural stroke</span></p>
+<p class="p3"><span class="s1">Patient Age</span></p>
+<p class="p3"><span class="s1">years</span></p>
+<p class="p3"><span class="s1">Age range: 18-120 years</span></p>
+<p class="p3"><span class="s1">Medical Conditions</span></p>
+<p class="p3"><span class="s1">Type 2 Diabetes</span></p>
+<p class="p3"><span class="s1">Hypertension</span></p>
+<p class="p3"><span class="s1">History of Stroke</span></p>
+<p class="p3"><span class="s1">Carotid Stenosis</span></p>
+<p class="p3"><span class="s1">Intracranial Atherosclerosis</span></p>
+<p class="p3"><span class="s1">Atrial Fibrillation</span></p>
+<p class="p3"><span class="s1">Surgery/Procedure Setting</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s1">Ambulatory Surgery</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s1">Emergency/Inpatient Surgery</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s1">Outpatient Clinic</span></p>
+<p class="p5"><span class="s3"><span class="Apple-converted-space">            </span></span></p>
+<p class="p3"><span class="s1">Select the primary setting where the procedure will be performed</span></p>
+<p class="p3"><span class="s1">Surgery/Procedure Category</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s1">General Surgery</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s1">Transplant Surgery</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s1">Orthopedic &amp; Plastic Surgery</span></p>
+<p class="p6"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s4">Neurosurgery</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s1">Cardiovascular Procedure</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s1">Thoracic Surgery</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s1">Head &amp; Neck Surgery</span></p>
+<p class="p6"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s4">OB-GYN Surgery</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s1">Urologic Surgery</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s1">Non-cardiac Medical Subspecialty Procedure</span></p>
+<p class="p5"><span class="s3"><span class="Apple-converted-space">            </span></span></p>
+<p class="p3"><span class="s5"><sup>*</sup></span><span class="s1"> Non-cardiac Medical Subspecialty Procedure includes: gastrointestinal endoscopy, pulmonology bronchoscopy, renal biopsy, pain injections, rehabilitation procedures, and other medical subspecialty interventions</span></p>
+<p class="p3"><span class="s1">Select the primary surgical specialty category</span></p>
+<p class="p3"><span class="s1">Predicted Stroke Risk: –</span></p>
+<p class="p2"><span class="s1"><b>Brown University Medical School</b><b></b></span></p>
+<p class="p2"><span class="s1">Evidence-based clinical decision support tool</span></p>
+<p class="p7"><span class="s1">This tool is for educational and clinical decision support only. Always use clinical judgment and consult appropriate healthcare providers.</span></p>
 </body>
 </html>
