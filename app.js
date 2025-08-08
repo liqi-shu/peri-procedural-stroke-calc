@@ -2,53 +2,50 @@
 // Evidence-based calculator implementing validated logistic regression model
 
 // 1. Model coefficients (β̂) from Stata
-// 1. Updated β̂ from Stata (n = 255,850; ref for PatientClass = Ambulatory Surgery; ref for proc_group = General Surgery)
-// 1. Updated β̂ from Stata (n = 255,850; ref for PatientClass = Ambulatory Surgery; ref for proc_group = General Surgery)
+// Updated β̂ from Stata (n = 255,850; ref for PatientClass = Ambulatory Surgery; ref for proc_group = General Surgery)
 const coefs = {
-  intercept:          -8.259739,
-  ProcAge:             0.0186698,
-  t2_diabetes:         0.2100635,
-  hypertension:        0.3956097,
-  history_stroke:      1.5102930,
-  carotid_stenosis:    0.7540256,
-  intracranial_athero: 1.0761450,
-  afib:                0.2658257,
+  intercept:          -8.251679,
+  ProcAge:             0.0186463,
+  t2_diabetes:         0.210143,
+  hypertension:        0.3965528,
+  history_stroke:      1.510622,
+  carotid_stenosis:    0.7539576,
+  intracranial_athero: 1.076393,
+  afib:                0.265985,
   // Procedure Setting dummies:
-  pc1:                 1.4812410,   // Emergency/Inpatient Surgery
-  pc2:                -0.4176664,   // Outpatient Clinic
+  pc1:                 1.481849,    // Emergency/Inpatient Surgery
+  pc2:                -0.4181883,   // Outpatient Clinic
   // Surgical group dummies (ref = General Surgery):
-  pg2:                 0.3003160,   // Transplant Surgery
-  pg3:                -0.0007442,   // Orthopedic & Plastic Surgery
-  pg4:                 1.3471680,   // Neurosurgery
-  pg5:                 1.1698530,   // Cardiovascular Surgery
-  pg6:                 0.1905141,   // Thoracic Surgery
-  pg7:                 0.0231247,   // Head & Neck Surgery
-  pg8:                 0.0810486,   // OB-GYN Surgery
-  pg9:                 0.5287325,   // Urologic Surgery
-  pg10:                0.4406307    // Non-cardiac Medical Subspecialty Procedures
+  pg3:                -0.0084477,   // Orthopedic & Plastic Surgery
+  pg4:                 1.339401,    // Neurosurgery
+  pg5:                 1.162026,    // Cardiovascular Surgery
+  pg6:                 0.1828371,   // Thoracic Surgery
+  pg7:                 0.0156524,   // Head & Neck Surgery
+  pg8:                 0.0736675,   // OB-GYN Surgery
+  pg9:                 0.5209588,   // Urologic Surgery
+  pg10:                0.4328439    // Non-cardiac Medical Subspecialty Procedures
 };
 
 // 2. Updated SEs from Stata (for delta-method CI; diagonal only)
 const ses = {
-  intercept:           0.1657569,
-  ProcAge:             0.0022242,
+  intercept:           0.1647509,
+  ProcAge:             0.0022234,
   t2_diabetes:         0.0617267,
-  hypertension:        0.0833122,
-  history_stroke:      0.0826593,
-  carotid_stenosis:    0.0877367,
-  intracranial_athero: 0.2174252,
-  afib:                0.0688924,
-  pc1:                 0.0660203,
-  pc2:                 0.1999194,
-  pg2:                 0.5917312,
-  pg3:                 0.1321125,
-  pg4:                 0.1227410,
-  pg5:                 0.1222628,
-  pg6:                 0.3505790,
-  pg7:                 0.1927555,
-  pg8:                 0.3513246,
-  pg9:                 0.2082893,
-  pg10:                0.1154209
+  hypertension:        0.0832952,
+  history_stroke:      0.082658,
+  carotid_stenosis:    0.0877354,
+  intracranial_athero: 0.2174465,
+  afib:                0.0688937,
+  pc1:                 0.0660051,
+  pc2:                 0.1999125,
+  pg3:                 0.1309491,
+  pg4:                 0.1214727,
+  pg5:                 0.1209741,
+  pg6:                 0.3501457,
+  pg7:                 0.1919943,
+  pg8:                 0.3509153,
+  pg9:                 0.2075443,
+  pg10:                0.1140659
 };
 
 // 3. Clinical guidance recommendations
@@ -151,7 +148,6 @@ function calculateRiskProbability(inputs) {
     afib: inputs.afib ? 1 : 0,
     pc1: inputs.patientClass === '1' ? 1 : 0,
     pc2: inputs.patientClass === '3' ? 1 : 0,
-    pg2: inputs.procGroup === '2' ? 1 : 0,
     pg3: inputs.procGroup === '3' ? 1 : 0,
     pg4: inputs.procGroup === '4' ? 1 : 0,
     pg5: inputs.procGroup === '5' ? 1 : 0,
