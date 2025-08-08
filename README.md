@@ -91,5 +91,5 @@ const coefs = {
 **Disclaimer**: This calculator is for educational and clinical decision support only. It should not replace professional medical judgment. Always consider individual patient circumstances and consult appropriate healthcare providers.
 
 **Version**: 1.0.0  
-**Last Updated**: 2024  
+**Last Updated**: 08/07/2025  
 **Institution**: Brown University Medical School 
