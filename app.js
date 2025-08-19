@@ -48,39 +48,7 @@ const ses = {
   pg10:                0.1140659
 };
 
-// 3. Clinical guidance recommendations
-const clinicalGuidance = {
-  low: {
-    title: "Low Risk (< 1%)",
-    recommendations: [
-      "Standard peri-procedural monitoring is appropriate",
-      "Routine pre-procedural evaluation sufficient",
-      "No additional stroke-specific precautions required",
-      "Consider standard ASA monitoring guidelines"
-    ]
-  },
-  moderate: {
-    title: "Moderate Risk (1-5%)",
-    recommendations: [
-      "Enhanced peri-procedural monitoring recommended",
-      "Consider pre-procedural neurology consultation",
-      "Implement stroke-specific monitoring protocols",
-      "Monitor blood pressure closely during procedure",
-      "Consider extended post-procedural observation"
-    ]
-  },
-  high: {
-    title: "High Risk (≥ 5%)",
-    recommendations: [
-      "Intensive peri-procedural monitoring required",
-      "Pre-procedural neurology consultation strongly recommended",
-      "Consider postponing elective procedures if possible",
-      "Implement comprehensive stroke prevention protocols",
-      "Extended post-procedural monitoring in ICU setting",
-      "Multidisciplinary team consultation recommended"
-    ]
-  }
-};
+
 
 // 4. DOM elements
 const form = document.getElementById('riskForm');
@@ -88,8 +56,7 @@ const probSpan = document.getElementById('predprob');
 const resultBox = document.getElementById('result');
 const confidenceInterval = document.getElementById('confidence-interval');
 const ciValue = document.getElementById('ci-value');
-const clinicalGuidanceBox = document.getElementById('clinical-guidance');
-const guidanceContent = document.getElementById('guidance-content');
+
 
 // 5. Main calculation function
 function calculateRisk() {
@@ -105,7 +72,6 @@ function calculateRisk() {
   
   // Update UI
   updateResults(riskResult);
-  updateClinicalGuidance(riskResult.probability);
 }
 
 // 6. Input collection and validation
@@ -219,34 +185,13 @@ function updateColorCoding(riskPercentage) {
   }
 }
 
-// 10. Update clinical guidance
-function updateClinicalGuidance(probability) {
-  const pct = probability * 100;
-  let guidance;
-  
-  if (pct < 1) {
-    guidance = clinicalGuidance.low;
-  } else if (pct < 5) {
-    guidance = clinicalGuidance.moderate;
-  } else {
-    guidance = clinicalGuidance.high;
-  }
-  
-  guidanceContent.innerHTML = `
-    <h4>${guidance.title}</h4>
-    <ul>
-      ${guidance.recommendations.map(rec => `<li>${rec}</li>`).join('')}
-    </ul>
-  `;
-  
-  clinicalGuidanceBox.style.display = 'block';
-}
+
 
 // 11. Display error state
 function displayError(message) {
   probSpan.textContent = message;
   confidenceInterval.style.display = 'none';
-  clinicalGuidanceBox.style.display = 'none';
+
   resultBox.className = 'results';
 }
 

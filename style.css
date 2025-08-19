@@ -339,6 +339,149 @@ select:focus {
   margin-right: 4px;
 }
 
+/* Bottom banner: reverse the diagonal so deeper color lands bottom-right */
+.footer {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+  color: #fff;
+  padding: 32px 30px;
+  margin-top: auto;
+}
+
+/* One-column footer card with high contrast */
+.footer-card {
+  background: #fff;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--primary-color); /* tasteful accent */
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Typography & hierarchy */
+.footer-institution {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+  margin-bottom: 2px;
+}
+.footer-sub {
+  margin: 0 0 10px 0;
+  color: var(--text-secondary);
+}
+
+.footer-disclosure-title {
+  margin: 8px 0 4px;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.footer-line { margin: 6px 0 10px; }
+
+/* Intended Use inside footer */
+.footer-intended {
+  margin-top: 10px;
+}
+.footer-intended h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+.simple-list { margin: 0.25rem 0 0; padding-left: 1.1rem; }
+.simple-list li { margin: 0.25rem 0; }
+
+/* Methods & Citations (collapsed by default) */
+.footer-methods { margin-top: 10px; }
+.footer-methods details { margin-top: 6px; }
+.footer-methods summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+  padding: 6px 0;
+}
+.footer-methods summary::-webkit-details-marker { display: none; }
+.footer-methods .icon { font-size: 1rem; }
+.methods-body a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--secondary-color);
+}
+.methods-body a:hover { text-decoration: underline; }
+.card-divider {
+  border: none;
+  border-top: 1px dashed var(--border-color);
+  margin: 10px 0;
+}
+
+/* Make sure footer content stacks nicely on small screens */
+.footer-content { display: block; }
+
+/* Panel Styles */
+.panel {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.panel h2 { 
+  margin: 0 0 0.5rem; 
+  font-size: 1.125rem; 
+  color: var(--primary-color);
+}
+
+.simple-list { 
+  margin: 0.25rem 0 0; 
+  padding-left: 1rem; 
+}
+
+.simple-list li { 
+  margin: 0.25rem 0; 
+  line-height: 1.5;
+}
+
+.methods-body { 
+  margin-top: 0.5rem; 
+}
+
+details > summary { 
+  cursor: pointer; 
+  user-select: none; 
+  color: var(--secondary-color);
+  font-weight: 500;
+  padding: 0.5rem 0;
+}
+
+details > summary:hover {
+  color: var(--primary-color);
+}
+
+.methods-body p {
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.methods-body a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.methods-body a:hover {
+  text-decoration: underline;
+}
+
+.methods-body hr {
+  margin: 1rem 0;
+  border: none;
+  border-top: 1px solid var(--border-color);
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   body {
@@ -372,6 +515,16 @@ select:focus {
   .disclaimer {
     max-width: none;
   }
+  
+  .footer-card {
+    margin: 1rem 0;
+    padding: 16px 18px;
+  }
+  
+  .panel {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+  }
 }
 
 /* Print styles for medical documentation */
@@ -396,9 +549,21 @@ select:focus {
     color: var(--text-primary) !important;
   }
   
-  .footer {
-    background: #f8f9fa !important;
-    color: var(--text-primary) !important;
+  .footer { 
+    background: #f8f9fa !important; 
+    color: var(--text-primary) !important; 
+  }
+  
+  details[open] > summary { 
+    display: none; 
+  }
+  
+  .panel, .footer-card { 
+    break-inside: avoid; 
+  }
+  
+  .footer-methods details[open] > summary { 
+    display: none; 
   }
 }
 
@@ -425,4 +590,75 @@ select:focus {
   * {
     transition: none !important;
   }
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Remove lines between % and 95% CI */
+.results .result-item {
+  border-bottom: none;
+  padding-bottom: 10px;   /* keep a little breathing room */
+}
+
+.results .confidence-interval {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 6px;        /* subtle spacing without a rule line */
+}
+
+/* One-line result: % and 95% CI side-by-side */
+.results {
+  text-align: center;
+}
+
+.results .result-item {
+  display: inline-flex;          /* was block flex */
+  align-items: baseline;
+  gap: 10px;
+  border-bottom: none;           /* remove the divider line */
+  padding-bottom: 0;
+}
+
+.results .confidence-interval {
+  display: inline-flex !important;  /* override inline style="display:block" */
+  align-items: baseline;
+  gap: 8px;
+  margin-left: 14px;                /* small gap between % and CI */
+  padding-top: 0;
+  border-top: none;                 /* remove the divider line */
+}
+
+/* (Optional) slightly de-emphasize the CI label */
+.results .ci-label {
+  opacity: 0.85;
+}
+
+/* Wrap to two lines on very narrow screens so it never overflows */
+@media (max-width: 420px) {
+  .results .result-item,
+  .results .confidence-interval {
+    display: block !important;
+    margin-left: 0;
+  }
+}
+
+/* Hide confidence interval by default and only show when explicitly displayed */
+.results .confidence-interval {
+  display: none !important;
+}
+
+/* Only show confidence interval when JavaScript sets it to display: block */
+.results .confidence-interval[style*="display: block"] {
+  display: inline-flex !important;
 }

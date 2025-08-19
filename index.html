@@ -28,6 +28,7 @@
   <div class="container">
     <header class="header">
       <h1>Brown Peri-procedural Stroke Risk Assessment Tool</h1>
+
       <p class="subtitle">Evidence-based risk prediction for peri-procedural stroke</p>
     </header>
     
@@ -115,6 +116,8 @@
         </div>
       </form>
 
+
+
       <!-- Results Section -->
       <div id="result" class="results" aria-live="polite" role="status">
         <div class="result-item">
@@ -127,21 +130,58 @@
         </div>
       </div>
 
-      <!-- Clinical Guidance -->
-      <div class="clinical-guidance" id="clinical-guidance" style="display: none;">
-        <h3>Clinical Recommendations</h3>
-        <div class="guidance-content" id="guidance-content"></div>
-      </div>
+
     </main>
 
     <footer class="footer">
       <div class="footer-content">
-        <div class="institutional-info">
-          <p><strong>Brown University Medical School</strong></p>
-          <p>Evidence-based clinical decision support tool</p>
-        </div>
-        <div class="disclaimer">
-          <p><small>This tool is for educational and clinical decision support only. Always use clinical judgment and consult appropriate healthcare providers.</small></p>
+        <!-- Single-column footer card that echoes the top banner but stays readable -->
+        <div class="footer-card" role="contentinfo" aria-labelledby="footer-card-heading">
+          <h2 id="footer-card-heading" class="sr-only">Clinical Decision Support Notice</h2>
+
+          <!-- Institution + tagline -->
+          <div class="footer-institution">Brown University Medical School</div>
+          <div class="footer-sub">Evidence-based clinical decision support tool</div>
+
+          <!-- Disclosure -->
+          <h3 class="footer-disclosure-title">Disclosure — limited external validation</h3>
+          <p class="footer-line">
+            Derived within a single health system with validation at affiliated sites; performance and calibration may vary in other settings.
+            <strong>Do not use as the sole basis for treatment decisions.</strong>
+          </p>
+
+          <!-- Intended Use & Users (moved here from mid-page) -->
+          <section class="footer-intended" aria-labelledby="intended-use-heading">
+            <h3 id="intended-use-heading">Intended Use &amp; Users</h3>
+            <ul class="simple-list">
+              <li><strong>Intended users:</strong> licensed clinicians involved in peri-procedural planning.</li>
+              <li><strong>Intended use:</strong> estimate 30-day peri-procedural ischemic stroke risk to support — not replace — clinical judgment and shared decision-making.</li>
+              <li><strong>Not intended for:</strong> emergency decision-making; pediatrics; pregnancy; procedures outside the listed categories; or cases with missing critical inputs.</li>
+            </ul>
+          </section>
+
+          <!-- Methods & Citations (collapsed by default) -->
+          <section class="footer-methods" aria-labelledby="methods-heading">
+            <details>
+              <summary class="summary-row">
+                <span class="icon" aria-hidden="true">📄</span>
+                <span id="methods-heading">Methods &amp; Citations</span>
+              </summary>
+              <div class="methods-body">
+                <p><strong>Model:</strong> multivariable logistic regression (coefficients and code are in the repository).</p>
+                <p><strong>Code &amp; coefficients:</strong>
+                  <a href="https://github.com/liqi-shu/peri-procedural-stroke-calc" target="_blank" rel="noopener">
+                    github.com/liqi-shu/peri-procedural-stroke-calc
+                  </a>
+                </p>
+                <hr class="card-divider" />
+                <p><strong>Publication (pending):</strong> PMID: <span>[TBD]</span> &nbsp;|&nbsp; PubMed link: <span>[TBD]</span></p>
+                <p><strong>Suggested citation (update when published):</strong>
+                  Shu L, et&nbsp;al. <em>Development and validation of an EHR-derived model for 30-day peri-procedural ischemic stroke.</em> 2025.<br>
+                </p>
+              </div>
+            </details>
+          </section>
         </div>
       </div>
     </footer>
