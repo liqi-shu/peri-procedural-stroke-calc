@@ -1,95 +1,119 @@
-# Brown Peri-procedural Stroke Risk Assessment Tool
+# Brown Peri‑procedural Stroke Risk Assessment Tool
 
-## Overview
+> **Version:** 1.1.0
+> **Last Updated:** 2025‑08‑18
 
-An evidence-based web calculator for predicting peri-procedural stroke risk in surgical patients. Implements a validated logistic regression model derived from multicenter clinical data (n=255,850).
-
-## Features
-
-- **Real-time risk calculation** with 95% confidence intervals
-- **Evidence-based clinical recommendations** based on risk stratification
-- **Responsive design** for desktop, tablet, and mobile use
-- **No dependencies** - pure HTML/CSS/JavaScript
-- **Offline capable** after initial load
-
-## Usage
-
-1. Enter patient age (18-120 years)
-2. Select applicable medical conditions
-3. Choose surgery setting and procedure category
-4. Review calculated risk and clinical recommendations
-
-## Risk Categories
-
-- **Low Risk (< 1%)**: Standard monitoring appropriate
-- **Moderate Risk (1-5%)**: Enhanced monitoring recommended  
-- **High Risk (≥ 5%)**: Intensive monitoring required
-
-## Model Details
-
-**Sample Size**: 255,850 patients  
-**Model Type**: Multivariable logistic regression  
-**Reference Groups**: Ambulatory Surgery, General Surgery  
-
-### Key Predictors
-- Age (continuous)
-- Medical conditions: diabetes, hypertension, stroke history, carotid stenosis, intracranial atherosclerosis, atrial fibrillation
-- Surgery setting: ambulatory, emergency/inpatient, outpatient clinic
-- Procedure category: 9 specialty groups (transplant surgery removed)
-
-## Technical Implementation
-
-### Files
-- `index.html` - Main interface
-- `app.js` - Calculation engine with updated coefficients
-- `style.css` - Styling
-- `README.md` - Documentation
-
-### Current Model Coefficients
-```javascript
-const coefs = {
-  intercept:          -8.251679,
-  ProcAge:             0.0186463,
-  t2_diabetes:         0.210143,
-  hypertension:        0.3965528,
-  history_stroke:      1.510622,
-  carotid_stenosis:    0.7539576,
-  intracranial_athero: 1.076393,
-  afib:                0.265985,
-  pc1:                 1.481849,    // Emergency/Inpatient Surgery
-  pc2:                -0.4181883,   // Outpatient Clinic
-  pg3:                -0.0084477,   // Orthopedic & Plastic Surgery
-  pg4:                 1.339401,    // Neurosurgery
-  pg5:                 1.162026,    // Cardiovascular Surgery
-  pg6:                 0.1828371,   // Thoracic Surgery
-  pg7:                 0.0156524,   // Head & Neck Surgery
-  pg8:                 0.0736675,   // OB-GYN Surgery
-  pg9:                 0.5209588,   // Urologic Surgery
-  pg10:                0.4328439    // Non-cardiac Medical Subspecialties
-};
-```
-
-## Deployment
-
-**Local**: Open `index.html` in any modern browser  
-**Institutional**: Deploy on hospital intranet or integrate with EHR systems  
-**Web**: Host on GitHub Pages, cloud platforms, or medical education sites
-
-## Limitations
-
-- Clinical judgment should not be replaced by calculator results
-- Results should be interpreted in context of individual patient circumstances
-- Model may not capture all relevant clinical factors
-- Requires JavaScript-enabled browser
-
-## Citation
-
-**Primary Research**: Shu L, et al. A Multicenter Peri-procedural Stroke Risk Model. [Journal Name]. [Year].
+An evidence‑based web calculator for estimating **30‑day peri‑procedural ischemic stroke risk** using a multivariable logistic regression model derived from a large multicenter cohort (n=255,850).
 
 ---
 
-**Disclaimer**: This calculator is for educational and clinical decision support only. It should not replace professional medical judgment. Always consider individual patient circumstances and consult appropriate healthcare providers.
+## Quick Start
 
-**Version**: 1.0.0  
-**Last Updated**: 08/07/2025  
-**Institution**: Brown University Medical School 
+1. Open `index.html` in any modern browser.
+2. Enter patient age (18–120 years).
+3. Check applicable comorbidities.
+4. Choose the procedure **Setting** and **Category**.
+5. Read the **predicted risk (%)** and **95% CI**.
+
+> **Intended Use**: Clinical decision support for licensed clinicians; not a substitute for clinical judgment.
+
+---
+
+## Features (current)
+
+* Real‑time risk calculation with **95% confidence intervals (delta‑method; diagonal SEs)**.
+* Clean, responsive UI (desktop, tablet, mobile) with **color‑coded risk tiers**.
+* Pure **HTML/CSS/JavaScript**; no external dependencies.
+
+> **Removed (until implemented):** "Offline capable" and automatic "clinical recommendations" text output. See **Roadmap**.
+
+---
+
+## Model
+
+* **Type:** Multivariable logistic regression
+* **Reference Groups:** Ambulatory Surgery (setting), General Surgery (procedure category)
+* **Predictors:**
+
+  * Age (continuous)
+  * Comorbidities: Type 2 diabetes, hypertension, prior stroke, carotid stenosis, intracranial atherosclerosis, atrial fibrillation
+  * Settings (dummy‑coded vs reference): Emergency/Inpatient, Outpatient Clinic
+  * Procedure categories (dummy‑coded vs reference): Orthopedic & Plastic, Neurosurgery, Cardiovascular, Thoracic, Head & Neck, OB‑GYN, Urologic, Non‑cardiac medical subspecialties
+
+### Encoding
+
+* **Setting (****`patientClass`****)**: `0` = Ambulatory (ref), `1` = Emergency/Inpatient → `pc1=1`, `3` = Outpatient Clinic → `pc2=1`.
+* **Procedure (****`procGroup`****)**: `1` = General (ref), `3–10` = specialty dummies as listed above.
+
+### Formula
+
+* Linear predictor: $\eta = \beta_0 + \sum_k \beta_k x_k$.
+* Probability: $p = 1/(1+e^{-\eta})$.
+* 95% CI via delta‑method on $\eta$ using **diagonal** variance approximation, then transformed back to probability.
+
+> The coefficients and standard errors are embedded in `app.js` and can be version‑controlled alongside this README.
+
+---
+
+## Risk Tiers (UI)
+
+* **Low**: < **1%** (green)
+* **Moderate**: **1–5%** (amber)
+* **High**: ≥ **5%** (red)
+
+These tiers drive the result panel's color only; they **do not** auto‑generate prescriptive recommendations.
+
+---
+
+## Repository Structure
+
+* `index.html` – Web UI scaffolding and accessibility hooks
+* `app.js` – Calculation engine (coefficients, SEs, CI logic)
+* `style.css` – Layout, theming, and responsive styles
+* `README.md` – This document
+
+---
+
+## Validation & Limitations
+
+* Developed and internally validated within a single health system; calibration may vary at external sites.
+* CI uses a **diagonal‑only** variance approximation (no covariance terms)—a conservative simplification.
+* Not intended for pediatrics, pregnancy, emergency decision‑making, or procedures outside the listed categories.
+* Input range currently limited to ages 18–120.
+
+---
+
+## Versioning
+
+* **1.1.0 (2025‑08‑18)**
+
+  * Clarified **what's implemented now** vs **roadmap** (removed "offline" and auto‑recommendations claims until shipped)
+  * Documented CI method and predictor encodings
+  * Added Known Limitations and Versioning/Changelog
+* **1.0.0 (2025‑08‑07)**
+
+  * Initial public README with coefficients and basic usage
+
+---
+
+## Roadmap / TODO
+
+* **Clinical guidance block**: render tier‑specific guidance (the CSS hooks exist) driven by a clearly documented ruleset.
+* **Offline support**: add Web App Manifest + Service Worker with an explicit cache strategy; re‑add the "offline capable" claim once shipped.
+* **Consistency**: surface `version` and `lastUpdated` in the UI footer; centralize metadata in one source of truth.
+* **Unit tests**: add coefficient smoke tests and CI bounds tests.
+* **Accessibility**: shortcut links, high‑contrast audit, and keyboard trap checks for details/summary.
+
+---
+
+## Deployment
+
+* **Local**: open `index.html` in a modern browser
+* **Institutional**: host on an intranet or embed within an EHR wrapper (ensure content security policy permits inline resources)
+* **Public web**: static hosting (e.g., GitHub Pages or any static CDN)
+
+---
+
+## Citation (placeholder)
+
+Shu L, *et al.* Development and validation of an EHR‑derived model for 30‑day peri‑procedural ischemic stroke. **\[Journal / Year TBD]**. PMID: **TBD**. 
