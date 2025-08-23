@@ -1,6 +1,6 @@
 # Brown Peri‑procedural Stroke Risk Assessment Tool
 
-> **Version:** 1.0.0
+> **Version:** 1.0.1
 > **Last Updated:** 2025‑08‑18
 
 An evidence‑based web calculator for estimating **30‑day peri‑procedural ischemic stroke risk** using a multivariable logistic regression model derived from a large multicenter cohort (n=255,850).
@@ -58,6 +58,13 @@ An evidence‑based web calculator for estimating **30‑day peri‑procedural i
 * Input range currently limited to ages 18–120.
 
 ---
+
+## Versioning
+
+* **1.0.1 (2025‑08‑18)**
+  * Updated model coefficients and standard errors from latest Stata analysis
+* **1.0.0 (2025‑08‑07)**
+  * Initial public README with coefficients and basic usage
 
 ## Citation (placeholder)
 
